@@ -1,0 +1,82 @@
+-- Create a table named "DATA1" with columns: ID, Name, Age, Sex, Date
+CREATE TABLE DATA1 (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Sex VARCHAR(10),
+    Date DATE
+);
+
+-- Insert data into "DATA1"
+INSERT INTO DATA1 (ID, Name, Age, Sex, Date) VALUES
+    (1, 'RALPH ALEXANDER', 24, 'MALE', '2023-09-20'),
+    (2, 'JUSTIN LUIS BITUIN', 23, 'MALE', '2023-09-15'),
+    (3, 'KELLY PENELOPE DE GUZMAN', 22, 'FEMALE', '2023-10-23'),
+    (4, 'CHRISTIAN DAVID CRUZ', 21, 'MALE', '2023-08-10'),
+    (5, 'KIMBERLY KRIS MANUEL', 20, 'FEMALE', '2023-10-20');
+
+-- Create another table named "DATA2" with columns: StuNum, Name, Course, Major
+CREATE TABLE DATA2 (
+    StuNum INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Course VARCHAR(50),
+    Major VARCHAR(10)
+);
+
+-- Insert data into "DATA2"
+INSERT INTO DATA2 (StuNum, Name, Course, Major) VALUES
+   (20001, 'JUSTIN LUIS BITUIN', 'Engineering', 'CPE'),
+   (20002, 'CHRISTIAN DAVID CRUZ', 'Engineering', 'EE'),
+   (20003, 'RALPH ALEXANDER', 'Engineering', 'IE'),
+   (20004, 'KIMBERLY KRIS MANUEL', 'Engineering', 'ICEP'),
+   (20005, 'KELLY PENELOPE DE GUZMAN', 'Engineering', 'ME');
+
+-- Retrieve ID and Age columns from "DATA1"
+SELECT ID, Age
+FROM DATA1;
+
+-- Retrieve StuNum and Major columns from "DATA2"
+SELECT StuNum, Major
+FROM DATA2;
+
+-- Update the Age column in "DATA1"
+UPDATE DATA1 SET Age = 20 WHERE ID = 1;
+UPDATE DATA1 SET Age = 21 WHERE ID = 2;
+UPDATE DATA1 SET Age = 22 WHERE ID = 3;
+UPDATE DATA1 SET Age = 23 WHERE ID = 4;
+UPDATE DATA1 SET Age = 24 WHERE ID = 5;
+
+-- Retrieve ID and Age columns from "DATA1" again
+SELECT ID, Age
+FROM DATA1;
+
+-- Retrieve combined data from "DATA1" and "DATA2" based on the Name column
+SELECT D1.ID, D1.Name, D1.Age, D1.Sex, D1.Date, D2.StuNum, D2.Course, D2.Major
+FROM DATA1 D1
+JOIN DATA2 D2 ON D1.Name = D2.Name;
+
+-- Correct the age updates in "DATA1"
+UPDATE DATA1 SET Age = 24 WHERE ID = 1;
+UPDATE DATA1 SET Age = 23 WHERE ID = 2;
+UPDATE DATA1 SET Age = 22 WHERE ID = 3;
+UPDATE DATA1 SET Age = 21 WHERE ID = 4;
+UPDATE DATA1 SET Age = 20 WHERE ID = 5;
+
+-- Retrieve StuNum and Age columns from "DATA2" and "DATA1"
+SELECT D2.StuNum, D1.Age
+FROM DATA2 D2
+JOIN DATA1 D1 ON D2.Name = D1.Name;
+
+-- Retrieve distinct values of the Sex column from "DATA1"
+SELECT DISTINCT Sex
+FROM DATA1;
+
+-- Retrieve data from "DATA1" ordered by Age
+SELECT ID, Name, Age, Sex, Date
+FROM DATA1
+ORDER BY Age ASC;
+
+-- Retrieve data from "DATA1" ordered alphabetically by Name
+SELECT ID, Name, Age, Sex, Date
+FROM DATA1
+ORDER BY Name ASC;
